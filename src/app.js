@@ -18,6 +18,23 @@ const candidates = {
       "Move Maria into the recruiter shortlist and send a coach note to strengthen portfolio visibility before the next review cycle.",
     primaryAction: "Promote to shortlist",
     secondaryAction: "Queue coach outreach",
+    breakdown: [
+      {
+        label: "Project depth",
+        text: "Applied work demonstrates stronger execution than the profile suggests.",
+        score: 92
+      },
+      {
+        label: "Reliability",
+        text: "Reply speed and follow-through patterns remain unusually consistent.",
+        score: 89
+      },
+      {
+        label: "Role alignment",
+        text: "Recent behavior maps closely to recruiter demand in adjacent roles.",
+        score: 81
+      }
+    ],
     timeline: [48, 66, 86, 58],
     timelineCaption:
       "Signal quality is climbing fast enough that waiting another week would likely understate Maria's true recruiter readiness.",
@@ -42,6 +59,23 @@ const candidates = {
       "Trigger immediate coach outreach, reduce application friction, and route Omar into a lower-lift support flow this week.",
     primaryAction: "Launch intervention",
     secondaryAction: "Reduce application friction",
+    breakdown: [
+      {
+        label: "Response decay",
+        text: "Reply behavior weakened sharply after the second interview stage.",
+        score: 86
+      },
+      {
+        label: "Completion risk",
+        text: "Application completion is falling despite healthy intent signals.",
+        score: 82
+      },
+      {
+        label: "Support urgency",
+        text: "Behavior suggests a fast coach touchpoint could still reverse the trend.",
+        score: 78
+      }
+    ],
     timeline: [82, 76, 54, 34],
     timelineCaption:
       "Momentum is deteriorating quickly enough that delay now creates a real risk of silent funnel exit.",
@@ -66,6 +100,23 @@ const candidates = {
       "Open a pathway shift recommendation, refresh saved roles, and present Jules with a clearer opportunity set tied to actual evidence.",
     primaryAction: "Recommend new pathway",
     secondaryAction: "Refresh saved roles",
+    breakdown: [
+      {
+        label: "Communication fit",
+        text: "Behavior patterns map better to customer-facing role families.",
+        score: 90
+      },
+      {
+        label: "Systems thinking",
+        text: "Project evidence shows process fluency and cross-functional instincts.",
+        score: 84
+      },
+      {
+        label: "Path adjacency",
+        text: "Nearby roles outperform the current lane on both fit and likely outcomes.",
+        score: 88
+      }
+    ],
     timeline: [42, 49, 62, 79],
     timelineCaption:
       "Role-fit confidence is increasing because the system is seeing stronger alignment outside the student's current self-selected lane.",
@@ -90,6 +141,23 @@ const candidates = {
       "Boost recruiter visibility now, then reinforce the portfolio narrative while the positive trend is still compounding.",
     primaryAction: "Boost recruiter visibility",
     secondaryAction: "Send reinforcement guide",
+    breakdown: [
+      {
+        label: "Portfolio quality",
+        text: "Recent revisions meaningfully improved readability and evidence density.",
+        score: 87
+      },
+      {
+        label: "Momentum trend",
+        text: "The student's trajectory is accelerating across recent coaching cycles.",
+        score: 83
+      },
+      {
+        label: "Exposure timing",
+        text: "The next few days are ideal for visibility while the trend is still compounding.",
+        score: 80
+      }
+    ],
     timeline: [30, 46, 61, 74],
     timelineCaption:
       "Anika's progress is still compounding, which makes this an ideal moment to increase exposure rather than wait for more proof.",
@@ -114,6 +182,23 @@ const candidates = {
       "Route Liam into fast coach review, clarify strongest lane, and request missing work samples before broader recruiter exposure.",
     primaryAction: "Start coach review",
     secondaryAction: "Request work samples",
+    breakdown: [
+      {
+        label: "Evidence quality",
+        text: "Signals are promising, but the strongest proof points are still incomplete.",
+        score: 72
+      },
+      {
+        label: "Profile clarity",
+        text: "Broader role interest is diluting the student's clearest narrative.",
+        score: 68
+      },
+      {
+        label: "Coach leverage",
+        text: "A small amount of human review could unlock a much sharper positioning story.",
+        score: 81
+      }
+    ],
     timeline: [34, 38, 44, 55],
     timelineCaption:
       "The trend is improving, but not enough to justify automatic promotion without a quick human review.",
@@ -144,9 +229,41 @@ const coachSliderEl = document.querySelector("#coachSlider");
 const visibilitySliderEl = document.querySelector("#visibilitySlider");
 const simLiftEl = document.querySelector("#simLift");
 const simOutcomeEl = document.querySelector("#simOutcome");
+const breakdownListEl = document.querySelector("#breakdownList");
+const activityListEl = document.querySelector("#activityList");
+const feedCountEl = document.querySelector("#feedCount");
 
 let currentCandidateKey = "maria";
 let currentMode = "potential";
+const activityFeed = [
+  {
+    title: "Maria Chen surfaced for recruiter shortlist",
+    text: "Potential score jumped after new project and stronger interview trend."
+  },
+  {
+    title: "Omar Rahman flagged for intervention review",
+    text: "Reply latency and completion drop triggered risk workflow."
+  },
+  {
+    title: "Jules Vega received alternate pathway recommendation",
+    text: "Operations-adjacent roles now outperform current search lane."
+  }
+];
+
+function renderActivityFeed() {
+  activityListEl.innerHTML = activityFeed
+    .map(
+      (item) => `
+        <article class="activity-item">
+          <strong>${item.title}</strong>
+          <p>${item.text}</p>
+        </article>
+      `
+    )
+    .join("");
+
+  feedCountEl.textContent = `${activityFeed.length} events`;
+}
 
 function renderTimeline(values) {
   timelineBarsEl.innerHTML = values
@@ -183,6 +300,19 @@ function renderCandidate(key) {
   secondaryActionEl.textContent = candidate.secondaryAction;
   modePillEl.textContent = candidate.mode;
   timelineCaptionEl.textContent = candidate.timelineCaption;
+  breakdownListEl.innerHTML = candidate.breakdown
+    .map(
+      (item) => `
+        <article class="breakdown-item">
+          <div>
+            <strong>${item.label}</strong>
+            <p>${item.text}</p>
+          </div>
+          <span>${item.score}</span>
+        </article>
+      `
+    )
+    .join("");
 
   reasonListEl.innerHTML = candidate.reasons.map((reason) => `<li>${reason}</li>`).join("");
   renderTimeline(candidate.timeline);
@@ -227,6 +357,19 @@ function rotateMode() {
   modeToggleEl.textContent = "Switch to potential mode";
 }
 
+function logAction(message, detail) {
+  activityFeed.unshift({
+    title: message,
+    text: detail
+  });
+
+  if (activityFeed.length > 6) {
+    activityFeed.pop();
+  }
+
+  renderActivityFeed();
+}
+
 queueItemEls.forEach((item) => {
   item.addEventListener("click", () => renderCandidate(item.dataset.candidate));
 });
@@ -238,6 +381,21 @@ graphNodeEls.forEach((node) => {
 coachSliderEl.addEventListener("input", updateSimulation);
 visibilitySliderEl.addEventListener("input", updateSimulation);
 modeToggleEl.addEventListener("click", rotateMode);
+primaryActionEl.addEventListener("click", () => {
+  const candidate = candidates[currentCandidateKey];
+  logAction(
+    `${candidate.name}: ${candidate.primaryAction}`,
+    `SignalOS recorded a primary workflow decision for ${candidate.name.toLowerCase()}.`
+  );
+});
+secondaryActionEl.addEventListener("click", () => {
+  const candidate = candidates[currentCandidateKey];
+  logAction(
+    `${candidate.name}: ${candidate.secondaryAction}`,
+    `A secondary follow-up action was queued to support ${candidate.name.toLowerCase()}'s next step.`
+  );
+});
 
 renderCandidate("maria");
+renderActivityFeed();
 updateSimulation();

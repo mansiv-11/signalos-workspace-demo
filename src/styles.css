@@ -158,6 +158,7 @@ h3 {
 .topbar,
 .hero-grid,
 .lower-grid,
+.workflow-grid,
 .card-header,
 .topbar-actions,
 .metric-row,
@@ -480,6 +481,11 @@ h3 {
   margin-top: 24px;
 }
 
+.workflow-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  margin-top: 24px;
+}
+
 .queue-list {
   display: grid;
   gap: 12px;
@@ -556,6 +562,69 @@ h3 {
   margin-bottom: 0;
 }
 
+.breakdown-list,
+.activity-list {
+  display: grid;
+  gap: 12px;
+}
+
+.breakdown-item,
+.activity-item {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+}
+
+.breakdown-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.breakdown-item strong,
+.activity-item strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.breakdown-item p,
+.activity-item p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.breakdown-item span,
+.feed-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #edf2ff;
+  color: #2940a0;
+  font-weight: 800;
+}
+
+.activity-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent-soft), var(--accent-soft-2));
+}
+
 .simulator-panel {
   display: grid;
   gap: 20px;
@@ -591,7 +660,8 @@ input[type="range"] {
   }
 
   .hero-grid,
-  .lower-grid {
+  .lower-grid,
+  .workflow-grid {
     grid-template-columns: 1fr;
   }
 }
