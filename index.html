@@ -3,326 +3,219 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignalOS Workspace</title>
+    <title>Artifact From the Future</title>
     <meta
       name="description"
-      content="An interactive SignalOS dashboard for surfacing hidden student potential, risk, and alternate opportunity paths."
+      content="A cinematic interactive experience where users discover mysterious artifacts from possible futures and decode the worlds they came from."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <div class="workspace-shell">
-      <aside class="sidebar">
-        <div class="sidebar-brand">S</div>
+    <div class="page-shell">
+      <header class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow">Temporal excavation interface</p>
+          <h1>Discover the object that survived your future.</h1>
+          <p class="lede">
+            Artifact From the Future is an interactive speculative lab. Choose a
+            signal, disturb the timeline, and uncover the mysterious objects, rituals,
+            and fragments left behind by worlds that do not exist yet.
+          </p>
 
-        <div class="workspace-switcher">
-          <span class="section-label">Workspace</span>
-          <strong>SignalOS</strong>
-          <p>Early talent intelligence</p>
-        </div>
-
-        <nav class="sidebar-nav">
-          <a href="#" class="sidebar-item active">Talent radar</a>
-          <a href="#" class="sidebar-item">Interventions</a>
-          <a href="#" class="sidebar-item">Path shifts</a>
-          <a href="#" class="sidebar-item">Coach queue</a>
-          <a href="#" class="sidebar-item">Signals lab</a>
-        </nav>
-
-        <div class="sidebar-card">
-          <span class="section-label">Live impact</span>
-          <strong>14 students need action this week</strong>
-          <p>7 hidden standouts, 4 drop-off risks, 3 better-fit pathway matches.</p>
-        </div>
-      </aside>
-
-      <main class="main-panel">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">Talent Radar</p>
-            <h1>Opportunity intelligence workspace</h1>
+          <div class="hero-actions">
+            <button class="button button-primary" data-jump="lab">Open the vault</button>
+            <button class="button button-secondary" data-jump="archive">Read the archive</button>
           </div>
 
-          <div class="topbar-actions">
-            <button class="button button-soft" id="modeToggle">Switch to risk mode</button>
-            <button class="button button-dark">Export weekly brief</button>
+          <div class="stat-row">
+            <article>
+              <strong id="timelineYear">2086</strong>
+              <span>active timeline</span>
+            </article>
+            <article>
+              <strong id="timelineTone">Tender</strong>
+              <span>emotional residue</span>
+            </article>
+            <article>
+              <strong id="timelineRisk">Unstable</strong>
+              <span>reality integrity</span>
+            </article>
           </div>
-        </header>
+        </section>
 
-        <section class="hero-grid">
-          <article class="canvas-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Live graph</p>
-                <h2>Where overlooked opportunity is forming right now</h2>
-              </div>
-              <div class="mode-pill" id="modePill">Potential mode</div>
+        <section class="hero-stage">
+          <div class="halo halo-blue"></div>
+          <div class="halo halo-gold"></div>
+          <div class="halo halo-rose"></div>
+
+          <article class="artifact-chamber">
+            <div class="artifact-frame" id="artifactFrame">
+              <div class="artifact-shape artifact-seed" id="artifactShape"></div>
             </div>
 
-            <div class="graph-canvas" id="graphCanvas">
-              <div class="graph-glow graph-glow-left"></div>
-              <div class="graph-glow graph-glow-right"></div>
-
-              <button class="graph-node graph-node-primary active" data-candidate="maria" style="top: 18%; left: 16%;">
-                <span class="node-name">Maria Chen</span>
-                <span class="node-score">Potential +27</span>
-              </button>
-
-              <button class="graph-node graph-node-secondary" data-candidate="omar" style="top: 56%; left: 22%;">
-                <span class="node-name">Omar Rahman</span>
-                <span class="node-score">Risk +18</span>
-              </button>
-
-              <button class="graph-node graph-node-tertiary" data-candidate="jules" style="top: 34%; left: 56%;">
-                <span class="node-name">Jules Vega</span>
-                <span class="node-score">Path shift</span>
-              </button>
-
-              <button class="graph-node graph-node-secondary" data-candidate="anika" style="top: 66%; left: 60%;">
-                <span class="node-name">Anika Bose</span>
-                <span class="node-score">Momentum rising</span>
-              </button>
-
-              <button class="graph-node graph-node-tertiary" data-candidate="liam" style="top: 18%; left: 72%;">
-                <span class="node-name">Liam Ortiz</span>
-                <span class="node-score">Coach review</span>
-              </button>
-
-              <div class="graph-line graph-line-a"></div>
-              <div class="graph-line graph-line-b"></div>
-              <div class="graph-line graph-line-c"></div>
-            </div>
-
-            <div class="signal-strip">
-              <span>Projects</span>
-              <span>Replies</span>
-              <span>Interview growth</span>
-              <span>Community proof</span>
-              <span>Role adjacency</span>
+            <div class="artifact-meta">
+              <span class="artifact-label">Recovered object</span>
+              <h2 id="artifactName">Memory Seed</h2>
+              <p id="artifactSummary">
+                A translucent capsule used to store one unrepeatable feeling before it
+                vanished from public life.
+              </p>
             </div>
           </article>
 
-          <article class="insight-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Decision panel</p>
-                <h2 id="candidateName">Maria Chen</h2>
-              </div>
-              <span class="priority-badge" id="candidatePriority">High upside</span>
+          <div class="floating-note note-left">
+            <span class="note-tag">Residue</span>
+            <strong id="noteLeft">Found in homes built after weather migration.</strong>
+          </div>
+
+          <div class="floating-note note-right">
+            <span class="note-tag">Theory</span>
+            <strong id="noteRight">People carried emotions as objects when language became unreliable.</strong>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <section class="lab-grid" id="lab">
+          <article class="control-panel">
+            <div class="section-head">
+              <p class="eyebrow">Disturb the timeline</p>
+              <h2>Choose what changed.</h2>
             </div>
 
-            <p class="candidate-summary" id="candidateSummary">
-              Strong project depth and unusually reliable follow-through indicate this
-              student is more promising than current recruiter ranking suggests.
+            <label class="control-group">
+              <span>Hope level</span>
+              <input id="hopeSlider" type="range" min="1" max="5" value="3" />
+            </label>
+
+            <label class="control-group">
+              <span>Technology intimacy</span>
+              <input id="techSlider" type="range" min="1" max="5" value="4" />
+            </label>
+
+            <label class="control-group">
+              <span>Climate weirdness</span>
+              <input id="climateSlider" type="range" min="1" max="5" value="3" />
+            </label>
+
+            <div class="chip-grid">
+              <button class="mode-chip active" data-mode="memory">Memory</button>
+              <button class="mode-chip" data-mode="ritual">Ritual</button>
+              <button class="mode-chip" data-mode="communication">Communication</button>
+            </div>
+
+            <div class="forecast-card">
+              <span class="mini-label">Prediction</span>
+              <strong id="forecastTitle">This future protects fragile feelings.</strong>
+              <p id="forecastCopy">
+                The world you are generating seems emotionally vivid but structurally
+                unstable, so its objects preserve what people fear losing most.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-panel">
+            <div class="section-head">
+              <p class="eyebrow">Branch archive</p>
+              <h2>Possible futures are splitting.</h2>
+            </div>
+
+            <div class="branch-canvas">
+              <button class="branch-node active" data-artifact="seed" style="top: 12%; left: 12%;">
+                <strong>Memory Seed</strong>
+                <span>stores one vanishing feeling</span>
+              </button>
+              <button class="branch-node" data-artifact="choir" style="top: 46%; left: 58%;">
+                <strong>Weather Choir</strong>
+                <span>forecasts storms through singing glass</span>
+              </button>
+              <button class="branch-node" data-artifact="veil" style="top: 70%; left: 24%;">
+                <strong>Quiet Veil</strong>
+                <span>lets two strangers share thoughts safely</span>
+              </button>
+              <div class="branch-line branch-line-a"></div>
+              <div class="branch-line branch-line-b"></div>
+              <div class="branch-line branch-line-c"></div>
+            </div>
+
+            <div class="legend-row">
+              <span>emotion</span>
+              <span>technology</span>
+              <span>myth</span>
+              <span>survival</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="insight-grid">
+          <article class="story-panel">
+            <div class="section-head">
+              <p class="eyebrow">Decoded fragment</p>
+              <h2 id="storyTitle">The Memory Seed belonged to a city learning how to grieve.</h2>
+            </div>
+
+            <p class="story-copy" id="storyCopy">
+              People in this future lived through too much change too quickly. They
+              built tiny devices that preserved feelings the way older civilizations
+              preserved photographs.
             </p>
 
             <div class="metric-row">
               <article>
-                <strong id="metricOneValue">+27</strong>
-                <span id="metricOneLabel">latent potential</span>
+                <strong id="metricEmotion">87</strong>
+                <span>emotional density</span>
               </article>
               <article>
-                <strong id="metricTwoValue">5d</strong>
-                <span id="metricTwoLabel">intervention window</span>
+                <strong id="metricStrangeness">72</strong>
+                <span>strangeness index</span>
               </article>
               <article>
-                <strong id="metricThreeValue">91%</strong>
-                <span id="metricThreeLabel">confidence</span>
+                <strong id="metricBeauty">91</strong>
+                <span>beauty residue</span>
               </article>
             </div>
 
-            <div class="detail-block">
-              <span class="section-label">Why the system surfaced this</span>
-              <ul id="reasonList" class="detail-list">
-                <li>Technical project evidence is stronger than profile polish.</li>
-                <li>Reply consistency signals high reliability.</li>
-                <li>Interview growth trend is accelerating over 3 weeks.</li>
-              </ul>
+            <ul class="story-list" id="storyList">
+              <li>Children learned to catalog sensations before they learned history.</li>
+              <li>Private grief became a civic design problem.</li>
+              <li>The rarest luxury was an emotion that stayed intact over time.</li>
+            </ul>
+          </article>
+
+          <article class="archive-panel" id="archive">
+            <div class="section-head">
+              <p class="eyebrow">Museum log</p>
+              <h2>Recovered notes from impossible worlds.</h2>
             </div>
 
-            <div class="detail-block">
-              <span class="section-label">Recommended action</span>
-              <p id="actionText">
-                Move Maria into the recruiter shortlist and send a coach note to
-                strengthen portfolio visibility before the next review cycle.
+            <div class="archive-list" id="archiveList">
+              <article class="archive-item active" data-fragment="ship">
+                <strong>The day people began shipping feelings like letters</strong>
+                <p>Memory objects became the safest way to say what words could no longer hold.</p>
+              </article>
+              <article class="archive-item" data-fragment="storm">
+                <strong>When glass instruments started singing before storms</strong>
+                <p>Some futures replaced weather alerts with collective rituals of listening.</p>
+              </article>
+              <article class="archive-item" data-fragment="veil">
+                <strong>The invention that made silence more intimate than speech</strong>
+                <p>Not all communication evolved toward noise. Some worlds evolved toward trust.</p>
+              </article>
+            </div>
+
+            <div class="impact-card">
+              <span class="mini-label">Current interpretation</span>
+              <strong id="impactTitle">The future object is never random.</strong>
+              <p id="impactCopy">
+                It is a fossil of whatever the culture was desperate to protect, repair,
+                or make survivable.
               </p>
-            </div>
-
-            <div class="action-row">
-              <button class="button button-dark" id="primaryAction">Promote to shortlist</button>
-              <button class="button button-soft" id="secondaryAction">Queue coach outreach</button>
-            </div>
-          </article>
-        </section>
-
-        <section class="lower-grid">
-          <article class="queue-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Active queue</p>
-                <h2>Students needing attention</h2>
-              </div>
-            </div>
-
-            <div class="queue-list">
-              <button class="queue-item active" data-candidate="maria">
-                <div>
-                  <strong>Maria Chen</strong>
-                  <p>Under-ranked standout in product analytics and backend projects.</p>
-                </div>
-                <span>Potential</span>
-              </button>
-
-              <button class="queue-item" data-candidate="omar">
-                <div>
-                  <strong>Omar Rahman</strong>
-                  <p>Application activity is slipping after two strong interview rounds.</p>
-                </div>
-                <span>Risk</span>
-              </button>
-
-              <button class="queue-item" data-candidate="jules">
-                <div>
-                  <strong>Jules Vega</strong>
-                  <p>Behavior suggests stronger fit in customer success operations.</p>
-                </div>
-                <span>Path</span>
-              </button>
-
-              <button class="queue-item" data-candidate="anika">
-                <div>
-                  <strong>Anika Bose</strong>
-                  <p>Portfolio quality is rising quickly after coach-guided revisions.</p>
-                </div>
-                <span>Momentum</span>
-              </button>
-            </div>
-          </article>
-
-          <article class="timeline-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Signal timeline</p>
-                <h2>What changed across the last 21 days</h2>
-              </div>
-            </div>
-
-            <div class="timeline-bars" id="timelineBars">
-              <div class="timeline-bar active" style="height: 48%;">
-                <span>Week 1</span>
-              </div>
-              <div class="timeline-bar active" style="height: 66%;">
-                <span>Week 2</span>
-              </div>
-              <div class="timeline-bar active" style="height: 86%;">
-                <span>Week 3</span>
-              </div>
-              <div class="timeline-bar" style="height: 58%;">
-                <span>Week 4</span>
-              </div>
-            </div>
-
-            <p class="timeline-caption" id="timelineCaption">
-              Signal quality is climbing fast enough that waiting another week would
-              likely understate Maria's true recruiter readiness.
-            </p>
-          </article>
-
-          <article class="lab-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Intervention simulator</p>
-                <h2>Test the next move</h2>
-              </div>
-            </div>
-
-            <div class="simulator-panel">
-              <label class="slider-group">
-                <span>Coach outreach intensity</span>
-                <input id="coachSlider" type="range" min="1" max="5" value="3" />
-              </label>
-
-              <label class="slider-group">
-                <span>Recruiter visibility boost</span>
-                <input id="visibilitySlider" type="range" min="1" max="5" value="4" />
-              </label>
-
-              <div class="sim-output">
-                <article>
-                  <strong id="simLift">+14%</strong>
-                  <span>projected response lift</span>
-                </article>
-                <article>
-                  <strong id="simOutcome">2.3x</strong>
-                  <span>odds of stronger outcome</span>
-                </article>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section class="workflow-grid">
-          <article class="breakdown-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Explainability</p>
-                <h2>Signal breakdown</h2>
-              </div>
-            </div>
-
-            <div class="breakdown-list" id="breakdownList">
-              <article class="breakdown-item">
-                <div>
-                  <strong>Project depth</strong>
-                  <p>Applied work demonstrates stronger execution than the profile suggests.</p>
-                </div>
-                <span>92</span>
-              </article>
-              <article class="breakdown-item">
-                <div>
-                  <strong>Reliability</strong>
-                  <p>Reply speed and follow-through patterns remain unusually consistent.</p>
-                </div>
-                <span>89</span>
-              </article>
-              <article class="breakdown-item">
-                <div>
-                  <strong>Role alignment</strong>
-                  <p>Recent behavior maps closely to recruiter demand in adjacent roles.</p>
-                </div>
-                <span>81</span>
-              </article>
-            </div>
-          </article>
-
-          <article class="activity-card">
-            <div class="card-header">
-              <div>
-                <p class="section-label">Decision log</p>
-                <h2>Live action feed</h2>
-              </div>
-              <span class="feed-count" id="feedCount">3 events</span>
-            </div>
-
-            <div class="activity-list" id="activityList">
-              <article class="activity-item">
-                <strong>Maria Chen surfaced for recruiter shortlist</strong>
-                <p>Potential score jumped after new project and stronger interview trend.</p>
-              </article>
-              <article class="activity-item">
-                <strong>Omar Rahman flagged for intervention review</strong>
-                <p>Reply latency and completion drop triggered risk workflow.</p>
-              </article>
-              <article class="activity-item">
-                <strong>Jules Vega received alternate pathway recommendation</strong>
-                <p>Operations-adjacent roles now outperform current search lane.</p>
-              </article>
             </div>
           </article>
         </section>
