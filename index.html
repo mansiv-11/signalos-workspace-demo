@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignalOS Workspace</title>
+    <meta
+      name="description"
+      content="An interactive SignalOS dashboard for surfacing hidden student potential, risk, and alternate opportunity paths."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="workspace-shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">S</div>
+
+        <div class="workspace-switcher">
+          <span class="section-label">Workspace</span>
+          <strong>SignalOS</strong>
+          <p>Early talent intelligence</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#" class="sidebar-item active">Talent radar</a>
+          <a href="#" class="sidebar-item">Interventions</a>
+          <a href="#" class="sidebar-item">Path shifts</a>
+          <a href="#" class="sidebar-item">Coach queue</a>
+          <a href="#" class="sidebar-item">Signals lab</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="section-label">Live impact</span>
+          <strong>14 students need action this week</strong>
+          <p>7 hidden standouts, 4 drop-off risks, 3 better-fit pathway matches.</p>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Talent Radar</p>
+            <h1>Opportunity intelligence workspace</h1>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="button button-soft" id="modeToggle">Switch to risk mode</button>
+            <button class="button button-dark">Export weekly brief</button>
+          </div>
+        </header>
+
+        <section class="hero-grid">
+          <article class="canvas-card">
+            <div class="card-header">
+              <div>
+                <p class="section-label">Live graph</p>
+                <h2>Where overlooked opportunity is forming right now</h2>
+              </div>
+              <div class="mode-pill" id="modePill">Potential mode</div>
+            </div>
+
+            <div class="graph-canvas" id="graphCanvas">
+              <div class="graph-glow graph-glow-left"></div>
+              <div class="graph-glow graph-glow-right"></div>
+
+              <button class="graph-node graph-node-primary active" data-candidate="maria" style="top: 18%; left: 16%;">
+                <span class="node-name">Maria Chen</span>
+                <span class="node-score">Potential +27</span>
+              </button>
+
+              <button class="graph-node graph-node-secondary" data-candidate="omar" style="top: 56%; left: 22%;">
+                <span class="node-name">Omar Rahman</span>
+                <span class="node-score">Risk +18</span>
+              </button>
+
+              <button class="graph-node graph-node-tertiary" data-candidate="jules" style="top: 34%; left: 56%;">
+                <span class="node-name">Jules Vega</span>
+                <span class="node-score">Path shift</span>
+              </button>
+
+              <button class="graph-node graph-node-secondary" data-candidate="anika" style="top: 66%; left: 60%;">
+                <span class="node-name">Anika Bose</span>
+                <span class="node-score">Momentum rising</span>
+              </button>
+
+              <button class="graph-node graph-node-tertiary" data-candidate="liam" style="top: 18%; left: 72%;">
+                <span class="node-name">Liam Ortiz</span>
+                <span class="node-score">Coach review</span>
+              </button>
+
+              <div class="graph-line graph-line-a"></div>
+              <div class="graph-line graph-line-b"></div>
+              <div class="graph-line graph-line-c"></div>
+            </div>
+
+            <div class="signal-strip">
+              <span>Projects</span>
+              <span>Replies</span>
+              <span>Interview growth</span>
+              <span>Community proof</span>
+              <span>Role adjacency</span>
+            </div>
+          </article>
+
+          <article class="insight-card">
+            <div class="card-header">
+              <div>
+                <p class="section-label">Decision panel</p>
+                <h2 id="candidateName">Maria Chen</h2>
+              </div>
+              <span class="priority-badge" id="candidatePriority">High upside</span>
+            </div>
+
+            <p class="candidate-summary" id="candidateSummary">
+              Strong project depth and unusually reliable follow-through indicate this
+              student is more promising than current recruiter ranking suggests.
+            </p>
+
+            <div class="metric-row">
+              <article>
+                <strong id="metricOneValue">+27</strong>
+                <span id="metricOneLabel">latent potential</span>
+              </article>
+              <article>
+                <strong id="metricTwoValue">5d</strong>
+                <span id="metricTwoLabel">intervention window</span>
+              </article>
+              <article>
+                <strong id="metricThreeValue">91%</strong>
+                <span id="metricThreeLabel">confidence</span>
+              </article>
+            </div>
+
+            <div class="detail-block">
+              <span class="section-label">Why the system surfaced this</span>
+              <ul id="reasonList" class="detail-list">
+                <li>Technical project evidence is stronger than profile polish.</li>
+                <li>Reply consistency signals high reliability.</li>
+                <li>Interview growth trend is accelerating over 3 weeks.</li>
+              </ul>
+            </div>
+
+            <div class="detail-block">
+              <span class="section-label">Recommended action</span>
+              <p id="actionText">
+                Move Maria into the recruiter shortlist and send a coach note to
+                strengthen portfolio visibility before the next review cycle.
+              </p>
+            </div>
+
+            <div class="action-row">
+              <button class="button button-dark" id="primaryAction">Promote to shortlist</button>
+              <button class="button button-soft" id="secondaryAction">Queue coach outreach</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="lower-grid">
+          <article class="queue-card">
+            <div class="card-header">
+              <div>
+                <p class="section-label">Active queue</p>
+                <h2>Students needing attention</h2>
+              </div>
+            </div>
+
+            <div class="queue-list">
+              <button class="queue-item active" data-candidate="maria">
+                <div>
+                  <strong>Maria Chen</strong>
+                  <p>Under-ranked standout in product analytics and backend projects.</p>
+                </div>
+                <span>Potential</span>
+              </button>
+
+              <button class="queue-item" data-candidate="omar">
+                <div>
+                  <strong>Omar Rahman</strong>
+                  <p>Application activity is slipping after two strong interview rounds.</p>
+                </div>
+                <span>Risk</span>
+              </button>
+
+              <button class="queue-item" data-candidate="jules">
+                <div>
+                  <strong>Jules Vega</strong>
+                  <p>Behavior suggests stronger fit in customer success operations.</p>
+                </div>
+                <span>Path</span>
+              </button>
+
+              <button class="queue-item" data-candidate="anika">
+                <div>
+                  <strong>Anika Bose</strong>
+                  <p>Portfolio quality is rising quickly after coach-guided revisions.</p>
+                </div>
+                <span>Momentum</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="card-header">
+              <div>
+                <p class="section-label">Signal timeline</p>
+                <h2>What changed across the last 21 days</h2>
+              </div>
+            </div>
+
+            <div class="timeline-bars" id="timelineBars">
+              <div class="timeline-bar active" style="height: 48%;">
+                <span>Week 1</span>
+              </div>
+              <div class="timeline-bar active" style="height: 66%;">
+                <span>Week 2</span>
+              </div>
+              <div class="timeline-bar active" style="height: 86%;">
+                <span>Week 3</span>
+              </div>
+              <div class="timeline-bar" style="height: 58%;">
+                <span>Week 4</span>
+              </div>
+            </div>
+
+            <p class="timeline-caption" id="timelineCaption">
+              Signal quality is climbing fast enough that waiting another week would
+              likely understate Maria's true recruiter readiness.
+            </p>
+          </article>
+
+          <article class="lab-card">
+            <div class="card-header">
+              <div>
+                <p class="section-label">Intervention simulator</p>
+                <h2>Test the next move</h2>
+              </div>
+            </div>
+
+            <div class="simulator-panel">
+              <label class="slider-group">
+                <span>Coach outreach intensity</span>
+                <input id="coachSlider" type="range" min="1" max="5" value="3" />
+              </label>
+
+              <label class="slider-group">
+                <span>Recruiter visibility boost</span>
+                <input id="visibilitySlider" type="range" min="1" max="5" value="4" />
+              </label>
+
+              <div class="sim-output">
+                <article>
+                  <strong id="simLift">+14%</strong>
+                  <span>projected response lift</span>
+                </article>
+                <article>
+                  <strong id="simOutcome">2.3x</strong>
+                  <span>odds of stronger outcome</span>
+                </article>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="./src/app.js"></script>
+  </body>
+</html>
